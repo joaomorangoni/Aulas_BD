@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/06/2024 às 17:45
+-- Tempo de geração: 21/06/2024 às 17:45
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -89,14 +89,14 @@ CREATE TABLE `produtor` (
 --
 
 INSERT INTO `produtor` (`produtorid`, `nomeProdutor`, `moradaProdutor`, `telefone`, `email`, `codregiao`) VALUES
-(1, 'Qt Vallado', 'Régua', '362895471', 'vallado@mail.telepac.pt', 1),
-(2, 'Finagra', 'Reguengos', '628196459', 'esporao@mail.esporao', 2),
-(3, 'Adolfo', 'Alemanha', '637291659', 'Spanish@gmail.com.es', 3),
-(4, 'Braya', 'Pindamonhangaba', '271946301', 'praian@hotmail.com', 4),
-(5, 'Andershow', 'Php', '271945105', 'csharp@php.com', 5),
-(6, 'Ednaldo', 'Pereira', '362945103', 'reboquinhodeparede@gmail.com', 6),
-(7, 'Breno', 'Atlantida', '184915482', 'Breno@gmail.com', 7),
-(8, 'Jundiaí', 'Jundiaí', '925174814', 'Jundiaí@jundiaí.jundiaí', 8);
+(1, 'Qt Vallado', 'Régua', '+55362895471', 'vallado@mail.telepac.pt', 1),
+(2, 'Finagra', 'Reguengos', '+55628196459', 'esporao@mail.esporao', 2),
+(3, 'Adolfo', 'Alemanha', '+55637291659', 'Spanish@gmail.com.es', 3),
+(4, 'Braya', 'Pindamonhangaba', '+55271946301', 'praian@hotmail.com', 4),
+(5, 'Andershow', 'Php', '+55271945105', 'csharp@php.com', 5),
+(6, 'Ednaldo', 'Pereira', '+55574829483', 'reboquinhodeparede@gmail.com', 6),
+(7, 'Breno', 'Atlantida', '+55184915482', 'Breno@gmail.com', 7),
+(8, 'Jundiaí', 'Jundiaí', '+55925174814', 'Jundiaí@jundiaí.jundiaí', 8);
 
 -- --------------------------------------------------------
 
