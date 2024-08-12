@@ -3,62 +3,62 @@
 
 
 CREATE TABLE proprietario (
-idproprietario varchar(5) PRIMARY KEY auto_increment,
-email varchar(255) unique,
-cpf varchar(255) unique,
-nasc date,
-telefone varchar(15),
-nome varchar(255),
-banco varchar(255),
-agencia varchar(255),
-conta varchar(255),
-pix varchar(100)
+idproprietario int(20) PRIMARY KEY auto_increment,
+email varchar(255) unique not null,
+cpf varchar(255) unique not null,
+nasc date not null,
+telefone varchar(15) not null,
+nome varchar(255) not null,
+banco varchar(255) not null,
+agencia varchar(255) not null,
+conta varchar(255) not null,
+pix varchar(100) unique
 )
 
 
 CREATE TABLE endereço (
 idendereço Int(30) PRIMARY KEY auto_increment,
-cidade varchar(255),
-bairro varchar(255),
-CEP varchar(255),
-rua varchar(255),
-estado varchar(255),
+cidade varchar(255) not null,
+bairro varchar(255) not null,
+CEP varchar(255) not null,
+rua varchar(255) not null,
+estado varchar(255) not null,
 complemento varchar(100),
-numero int(10),
+numero int(10) not null,
 idproprietario varchar(5),
 FOREIGN KEY(idproprietario) REFERENCES proprietario (idproprietario)
 )
 
 
 CREATE TABLE fiador (
-idfiador varchar(10) PRIMARY KEY auto_increment,
-email varchar(255),
-rg varchar(15),
-telefone varchar(15),
-cpf varchar(15),
-nome varchar(255),
+idfiador int(10) PRIMARY KEY auto_increment,
+email varchar(255) unique not null,
+rg varchar(15) unique not null,
+telefone varchar(15) unique not null,
+cpf varchar(15) unique not null,
+nome varchar(255) not null,
 idendereço Int(30),
 FOREIGN KEY(idendereço) REFERENCES endereço (idendereço)
 )
 
 
 CREATE TABLE Corretor (
-idCorretor varchar(10) PRIMARY KEY auto_increment,
-email varchar(255),
+idCorretor int(10) PRIMARY KEY auto_increment,
+email varchar(255) unique not null,
 imobiliaria varchar(255),
-telefone varchar(15),
-nome varchar(255)
+telefone varchar(15) unique not null,
+nome varchar(255) not null
 )
 
 
 CREATE TABLE imovel (
-idimovel varchar(10) PRIMARY KEY auto_increment,
-qntBanheiros int(10),
+idimovel int(10) PRIMARY KEY auto_increment,
+qntBanheiros int(10) not null,
 suites int(10),
 tipo varchar(255),
-qntComodos int(10),
+qntComodos int(10) not null,
 qntGaragem int(10),
-disponivel bit,
+disponivel bit not null,
 piscina int(10),
 idendereço Int(30),
 idproprietario varchar(5),
@@ -66,11 +66,22 @@ FOREIGN KEY(idendereço) REFERENCES endereço (idendereço),
 FOREIGN KEY(idproprietario) REFERENCES proprietario (idproprietario)
 )
 
+
+CREATE TABLE inquilino (
+idinquilino varchar(10) PRIMARY KEY auto_increment,
+rg varchar(15) unique not null,
+telefone varchar(15) not null,
+cpf varchar(15) unique not null,
+email varchar(255) unique not null,
+idfiador varchar(10),
+FOREIGN KEY(idfiador) REFERENCES fiador (idfiador)
+)
+
 CREATE TABLE aluguel (
 codaluguel varchar(10) PRIMARY KEY auto_increment,
-datainicio date,
-datafim date,
-datavenc date,
+datainicio date not null,
+datafim date not null,
+datavenc date not null,
 desc varchar(255),
 idimovel varchar(10),
 idCorretor varchar(10),
@@ -78,16 +89,6 @@ idinquilino varchar(10),
 FOREIGN KEY(idimovel) REFERENCES imovel (idimovel),
 FOREIGN KEY(idCorretor) REFERENCES Corretor (idCorretor),
 FOREIGN KEY(idinquilino) REFERENCES inquilino (idinquilino)
-)
-
-CREATE TABLE inquilino (
-idinquilino varchar(10) PRIMARY KEY auto_increment,
-rg varchar(15),
-telefone varchar(15),
-cpf varchar(15),
-email varchar(255),
-idfiador varchar(10),
-FOREIGN KEY(idfiador) REFERENCES fiador (idfiador)
 )
 
 CREATE TABLE fotos (
