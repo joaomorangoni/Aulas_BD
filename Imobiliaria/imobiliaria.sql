@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Ago-2024 às 14:07
+-- Tempo de geração: 29-Ago-2024 às 14:59
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.0.25
 
@@ -71,6 +71,22 @@ CREATE TABLE `endereço` (
   `numero` int(10) NOT NULL,
   `idproprietario` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Extraindo dados da tabela `endereço`
+--
+
+INSERT INTO `endereço` (`idendereço`, `cidade`, `bairro`, `CEP`, `rua`, `estado`, `complemento`, `numero`, `idproprietario`) VALUES
+(1, 'Ribeirão Pires', 'Vila Suissa', '43583-458', 'Ernesto Alvez de Arruda', 'São Paulo', '', 141, 1),
+(2, 'Ribeirão Pires', 'Ouro Fino', '29383-483', 'Rua das flores', 'São Paulo', '', 111, 2),
+(3, 'Ribeirão Pires', 'Centro Alto', '29043-789', 'Rua Venancio', 'São Paulo', '', 88, 3),
+(4, 'Ribeirão Pires', 'Quarta Divisão', '89706-432', 'Rua Rochedo', 'São Paulo', '', 76, 4),
+(5, 'Diadema', 'Piraporinha', '12637-589', 'Rua da Anta', 'São Paulo', '', 345, 5),
+(6, 'Ribeirão Pires', 'Centro Alto', '56987-865', 'Rua Belmiro', 'São Paulo', '', 388, 6),
+(7, 'Ribeirão Pires', 'Ouro Fino', '45674-389', 'Rua Rua', 'São Paulo', '', 453, 7),
+(8, 'Ribeirão Pires', 'Vila Suissa', '24621-854', 'Rua Maristela', 'São Paulo', '', 324, 8),
+(9, 'Ribeirão Pires', 'Vila Suissa', '43762-896', 'Rua Camini', 'São Paulo', '', 222, 9),
+(10, 'Ribeirão Pires', 'Ouro Fino', '84564-865', 'Rua Roberto', 'São Paulo', '', 242, 10);
 
 -- --------------------------------------------------------
 
@@ -262,7 +278,7 @@ ALTER TABLE `corretor`
 -- AUTO_INCREMENT de tabela `endereço`
 --
 ALTER TABLE `endereço`
-  MODIFY `idendereço` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `idendereço` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `fiador`
