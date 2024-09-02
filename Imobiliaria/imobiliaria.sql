@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Set-2024 às 13:54
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.0.25
+-- Tempo de geração: 02-Set-2024 às 17:42
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,24 +37,25 @@ CREATE TABLE `aluguel` (
   `descri` varchar(255) DEFAULT NULL,
   `idimovel` int(10) DEFAULT NULL,
   `idCorretor` int(10) DEFAULT NULL,
-  `idinquilino` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `idinquilino` int(10) DEFAULT NULL,
+  `valorAluguel` decimal(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `aluguel`
 --
 
-INSERT INTO `aluguel` (`codaluguel`, `datainicio`, `datafim`, `datavenc`, `descri`, `idimovel`, `idCorretor`, `idinquilino`) VALUES
-(1, '2024-11-12', '2024-12-12', '2024-12-19', '', 1, 1, 1),
-(2, '2024-11-12', '2024-12-12', '2024-12-19', '', 2, 2, 2),
-(3, '2024-11-12', '2024-12-12', '2024-12-19', '', 3, 3, 3),
-(4, '2024-11-12', '2024-12-12', '2024-12-19', '', 4, 4, 4),
-(5, '2024-11-12', '2024-12-12', '2024-12-19', '', 5, 5, 5),
-(6, '2024-11-12', '2024-12-12', '2024-12-19', '', 6, 6, 6),
-(7, '2024-11-12', '2024-12-12', '2024-12-19', '', 7, 7, 7),
-(8, '2024-11-12', '2024-12-12', '2024-12-19', '', 8, 8, 8),
-(9, '2024-11-12', '2024-12-12', '2024-12-19', '', 9, 9, 9),
-(10, '2024-11-12', '2024-12-12', '2024-12-19', '', 10, 10, 10);
+INSERT INTO `aluguel` (`codaluguel`, `datainicio`, `datafim`, `datavenc`, `descri`, `idimovel`, `idCorretor`, `idinquilino`, `valorAluguel`) VALUES
+(1, '2024-11-12', '2024-12-12', '2024-12-19', '', 1, 1, 1, '585.00'),
+(2, '2024-11-12', '2024-12-12', '2024-12-19', '', 2, 2, 2, '1123.20'),
+(3, '2024-11-12', '2024-12-12', '2024-12-19', '', 3, 3, 3, '1169.99'),
+(4, '2024-11-12', '2024-12-12', '2024-12-19', '', 4, 4, 4, '1170.12'),
+(5, '2024-11-12', '2024-12-12', '2024-12-19', '', 5, 5, 5, '1169.99'),
+(6, '2024-11-12', '2024-12-12', '2024-12-19', '', 6, 6, 6, '909.99'),
+(7, '2024-11-12', '2024-12-12', '2024-12-19', '', 7, 7, 7, '527.54'),
+(8, '2024-11-12', '2024-12-12', '2024-12-19', '', 8, 8, 8, '404.35'),
+(9, '2024-11-12', '2024-12-12', '2024-12-19', '', 9, 9, 9, '585.00'),
+(10, '2024-11-12', '2024-12-12', '2024-12-19', '', 10, 10, 10, '889.20');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,7 @@ CREATE TABLE `corretor` (
   `imobiliaria` varchar(255) DEFAULT NULL,
   `telefone` varchar(15) NOT NULL,
   `nome` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `corretor`
@@ -77,7 +78,7 @@ CREATE TABLE `corretor` (
 INSERT INTO `corretor` (`idCorretor`, `email`, `imobiliaria`, `telefone`, `nome`) VALUES
 (1, 'corretor email@gmail.com', 'construções', '28738-9278', 'Gilberto'),
 (2, 'danielson@email.com', 'construções', '71433-8788', 'Daniel'),
-(3, 'clt@gmail.com', 'construções', '72678-8268', 'Trabalhador'),
+(3, 'carmo.araujo@gmail.com', 'construções', '72678-8268', 'Carmo'),
 (4, 'pablo@hotmail.com', 'construções', '76279-8278', 'Pablo'),
 (5, 'mico@outlook.com', 'construções', '72678-8278', 'Matheus'),
 (6, 'adriana@gmail.com', 'construções', '62678-5123', 'Adriana'),
@@ -101,24 +102,25 @@ CREATE TABLE `endereço` (
   `estado` varchar(255) NOT NULL,
   `complemento` varchar(100) DEFAULT NULL,
   `numero` int(10) NOT NULL,
-  `idproprietario` int(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `idproprietario` int(20) DEFAULT NULL,
+  `idimovel` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `endereço`
 --
 
-INSERT INTO `endereço` (`idendereço`, `cidade`, `bairro`, `CEP`, `rua`, `estado`, `complemento`, `numero`, `idproprietario`) VALUES
-(1, 'Ribeirão Pires', 'Vila Suissa', '43583-458', 'Ernesto Alvez de Arruda', 'São Paulo', '', 141, 1),
-(2, 'Ribeirão Pires', 'Ouro Fino', '29383-483', 'Rua das flores', 'São Paulo', '', 111, 2),
-(3, 'Ribeirão Pires', 'Centro Alto', '29043-789', 'Rua Venancio', 'São Paulo', '', 88, 3),
-(4, 'Ribeirão Pires', 'Quarta Divisão', '89706-432', 'Rua Rochedo', 'São Paulo', '', 76, 4),
-(5, 'Diadema', 'Piraporinha', '12637-589', 'Rua da Anta', 'São Paulo', '', 345, 5),
-(6, 'Ribeirão Pires', 'Centro Alto', '56987-865', 'Rua Belmiro', 'São Paulo', '', 388, 6),
-(7, 'Ribeirão Pires', 'Ouro Fino', '45674-389', 'Rua Rua', 'São Paulo', '', 453, 7),
-(8, 'Ribeirão Pires', 'Vila Suissa', '24621-854', 'Rua Maristela', 'São Paulo', '', 324, 8),
-(9, 'Ribeirão Pires', 'Vila Suissa', '43762-896', 'Rua Camini', 'São Paulo', '', 222, 9),
-(10, 'Ribeirão Pires', 'Ouro Fino', '84564-865', 'Rua Roberto', 'São Paulo', '', 242, 10);
+INSERT INTO `endereço` (`idendereço`, `cidade`, `bairro`, `CEP`, `rua`, `estado`, `complemento`, `numero`, `idproprietario`, `idimovel`) VALUES
+(1, 'Ribeirão Pires', 'Vila Suissa', '43583-458', 'Ernesto Alvez de Arruda', 'São Paulo', '', 141, 1, 1),
+(2, 'Ribeirão Pires', 'Ouro Fino', '29383-483', 'Rua das flores', 'São Paulo', '', 111, 2, 2),
+(3, 'Ribeirão Pires', 'Centro Alto', '29043-789', 'Rua Venancio', 'São Paulo', '', 88, 3, 3),
+(4, 'São Paulo', 'São Paulo', '89706-432', 'Rua Rochedo', 'São Paulo', '', 76, 4, 4),
+(5, 'Mauá', 'Piraporinha', '12637-589', 'Rua da Anta', 'São Paulo', '', 345, 5, 5),
+(6, 'Ribeirão Pires', 'Centro Alto', '56987-865', 'Rua Belmiro', 'São Paulo', '', 388, 6, 6),
+(7, 'Ribeirão Pires', 'Ouro Fino', '45674-389', 'Rua Rua', 'São Paulo', '', 453, 7, 7),
+(8, 'Ribeirão Pires', 'Vila Suissa', '24621-854', 'Rua Maristela', 'São Paulo', '', 324, 8, 8),
+(9, 'Ribeirão Pires', 'Vila Suissa', '43762-896', 'Rua Camini', 'São Paulo', '', 222, 9, 9),
+(10, 'Ribeirão Pires', 'Ouro Fino', '84564-865', 'Rua Roberto', 'São Paulo', '', 242, 10, 10);
 
 -- --------------------------------------------------------
 
@@ -134,7 +136,7 @@ CREATE TABLE `fiador` (
   `cpf` varchar(15) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `idendereço` int(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `fiador`
@@ -162,7 +164,7 @@ CREATE TABLE `fotos` (
   `idfoto` int(100) NOT NULL,
   `midias` varchar(255) DEFAULT NULL,
   `idimovel` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `fotos`
@@ -198,7 +200,7 @@ CREATE TABLE `imovel` (
   `idendereço` int(30) DEFAULT NULL,
   `idproprietario` int(20) DEFAULT NULL,
   `lavanderia` bit(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `imovel`
@@ -208,7 +210,7 @@ INSERT INTO `imovel` (`idimovel`, `qntBanheiros`, `suites`, `tipo`, `qntComodos`
 (1, 1, 0, 'terrea', 4, b'0000000001', b'1', 0, 1, 1, b'1'),
 (2, 2, 0, 'terrea', 6, b'0000000001', b'1', 0, 2, 2, b'1'),
 (3, 1, 1, 'terrea', 2, b'0000000000', b'1', 1, 3, 3, b'1'),
-(4, 1, 0, 'sobrado', 4, b'0000000000', b'1', 1, 4, 4, b'1'),
+(4, 1, 0, 'sobrado', 4, b'0000000001', b'1', 1, 4, 4, b'1'),
 (5, 2, 1, 'terrea', 5, b'0000000001', b'1', 0, 5, 5, b'0'),
 (6, 3, 1, 'sobrado', 7, b'0000000001', b'1', 1, 6, 6, b'0'),
 (7, 1, 0, 'terrea', 4, b'0000000001', b'1', 0, 7, 7, b'1'),
@@ -230,24 +232,25 @@ CREATE TABLE `inquilino` (
   `email` varchar(255) NOT NULL,
   `idfiador` int(10) DEFAULT NULL,
   `salario` decimal(7,2) NOT NULL,
-  `dataNasc` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `dataNasc` date DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `inquilino`
 --
 
-INSERT INTO `inquilino` (`idinquilino`, `rg`, `telefone`, `cpf`, `email`, `idfiador`, `salario`, `dataNasc`) VALUES
-(1, '76.862.725.2', '8002-8922', '828.928.817-01', 'rogerinho@email.com', 1, '0.00', NULL),
-(2, '26.928.725.8', '71688-8268', '827.927.928-00', 'fulano@gmail.com', 2, '0.00', NULL),
-(3, '72.827.725.0', '72678-9289', '827.928.414-12', 'fulaninho@email.com', 3, '2500.00', '1981-12-21'),
-(4, '71.837.726.9', '87289-8278', '627.837.716-80', 'dipper@email.com', 4, '1500.00', '1974-02-14'),
-(5, '72.625.847.7', '02782-8268', '626.847.817-98', 'algumacoisaai@outlook.com', 5, '4000.00', '1960-06-02'),
-(6, '17.736.828.5', '72667-2656', '627.726.928-09', 'capitao@gmail.com', 6, '0.00', NULL),
-(7, '26.726.625.4', '62443-5255', '827.726.727-00', 'deltrano@email.com', 7, '0.00', NULL),
-(8, '62.725.524.1', '62527-8268', '827.726.826-08', 'marcelin@gmail.com', 8, '0.00', NULL),
-(9, '16.847.514.2', '72677-8278', '276.847.625-08', 'inquilino9@gmail.com', 9, '0.00', NULL),
-(10, '26.836.847.2', '91899-8268', '626.847.514-09', 'robertooo@outlook.com', 10, '0.00', NULL);
+INSERT INTO `inquilino` (`idinquilino`, `rg`, `telefone`, `cpf`, `email`, `idfiador`, `salario`, `dataNasc`, `nome`) VALUES
+(1, '76.862.725.2', '8002-8922', '828.928.817-01', 'rogerinho@email.com', 1, '0.00', '1989-09-22', 'Rogério'),
+(2, '26.928.725.8', '71688-8268', '827.927.928-00', 'fulano@gmail.com', 2, '0.00', '2000-07-06', 'Bennatti'),
+(3, '72.827.725.0', '72678-9289', '827.928.414-12', 'fulaninho@email.com', 3, '2500.00', '1981-12-21', 'Enzo'),
+(4, '71.837.726.9', '87289-8278', '627.837.716-80', 'dipper@email.com', 4, '1500.00', '1974-02-14', 'Dipper'),
+(5, '72.625.847.7', '02782-8268', '626.847.817-98', 'algumacoisaai@outlook.com', 5, '4000.00', '1960-06-02', 'Daniel'),
+(6, '17.736.828.5', '72667-2656', '627.726.928-09', 'capitao@gmail.com', 6, '0.00', '1988-09-20', 'America'),
+(7, '26.726.625.4', '62443-5255', '827.726.727-00', 'deltrano@email.com', 7, '0.00', '1990-10-20', 'Ciclano'),
+(8, '62.725.524.1', '62527-8268', '827.726.826-08', 'marcelin@gmail.com', 8, '0.00', '1990-12-25', 'Marcelo'),
+(9, '16.847.514.2', '72677-8278', '276.847.625-08', 'inquilino9@gmail.com', 9, '0.00', '1999-12-31', 'Claudio'),
+(10, '26.836.847.2', '91899-8268', '626.847.514-09', 'robertooo@outlook.com', 10, '0.00', '2001-01-01', 'Robertooo');
 
 -- --------------------------------------------------------
 
@@ -266,7 +269,7 @@ CREATE TABLE `proprietario` (
   `agencia` varchar(255) NOT NULL,
   `conta` varchar(255) NOT NULL,
   `pix` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `proprietario`
@@ -275,14 +278,14 @@ CREATE TABLE `proprietario` (
 INSERT INTO `proprietario` (`idproprietario`, `email`, `cpf`, `nasc`, `telefone`, `nome`, `banco`, `agencia`, `conta`, `pix`) VALUES
 (1, 'claudinho@email.com', '231.238.218-12', '0000-00-00', '11 23844-6857', 'Claudio Leite', 'nubank', '0001', 'Claudio Leite', '231.238.218-12'),
 (2, 'roberto@gmail.com', '322.873.219-11', '0000-00-00', '11 38723-8999', 'Roberto', 'Inter', '077', 'Roberto Chagas', '11 38723-8999'),
-(3, 'kevyn@hotmail.com', '211.754.829-09', '0000-00-00', '31 27328-9900', 'Kevyn Marques', 'Bradesco', '237', 'Kevyn Marques', '31 27328-9900'),
-(4, 'bobesponja@outlook.com', '865.548.239-09', '0000-00-00', '00 00000-0000', 'BobEsponja', 'Nubank', '0001', 'Esponja Bob', ''),
-(5, 'gilberto@email.com', '321.568.234-10', '0000-00-00', '16 29387-2346', 'Gilberto', 'Bradesco', '237', 'Gilberto Barros', '16 29387-2346'),
-(6, 'bungas@gmail.com', '856.495.235-08', '0000-00-00', '21 37627-4738', 'Kleber', 'Nubank', '0001', 'Kleber Coelho', '856.495.235-08'),
+(3, 'kevyn@hotmail.com', '211.754.829-09', '0000-00-00', '11 27328-9900', 'Kevyn Marques', 'Bradesco', '237', 'Kevyn Marques', '31 27328-9900'),
+(4, 'bobesponja@outlook.com', '865.548.239-09', '0000-00-00', '11 00000-0000', 'BobEsponja', 'Nubank', '0001', 'Esponja Bob', ''),
+(5, 'gilberto@email.com', '321.568.234-10', '0000-00-00', '11 29387-2346', 'Gilberto', 'Bradesco', '237', 'Gilberto Barros', '16 29387-2346'),
+(6, 'bungas@gmail.com', '856.495.235-08', '0000-00-00', '11 37627-4738', 'Kleber', 'Nubank', '0001', 'Kleber Coelho', '856.495.235-08'),
 (7, 'rebocodeparede@email.com', '544.348.965-10', '0000-00-00', '11 43743-8458', 'Bruno', 'Itau', '341', 'Reboquinho de Parede', '544.348.965-10'),
-(8, 'bryan@gmail.com', '238.218.968-19', '0000-00-00', '41 47543-4368', 'Bryan', 'Inter', '077', 'Bryan Almeida', '41 47543-4368'),
+(8, 'bryan@gmail.com', '238.218.968-19', '0000-00-00', '11 47543-4368', 'Bryan', 'Inter', '077', 'Bryan Almeida', '41 47543-4368'),
 (9, 'fuinhas@email.com', '754.586.325-01', '0000-00-00', '11 34623-4783', 'Aline', 'Nubank', '0001', 'Aline Dantas', '754.586.325-01'),
-(10, 'paragas@email.com', '823.687.457-02', '0000-00-00', '51 28394-5487', 'Gabriel Caspirro', 'Nubank', '0001', 'Gabriel Caspirro', '823.687.457-02');
+(10, 'paragas@email.com', '823.687.457-02', '0000-00-00', '11 28394-5487', 'Gabriel Caspirro', 'Nubank', '0001', 'Gabriel Caspirro', '823.687.457-02');
 
 --
 -- Índices para tabelas despejadas
@@ -310,7 +313,8 @@ ALTER TABLE `corretor`
 --
 ALTER TABLE `endereço`
   ADD PRIMARY KEY (`idendereço`),
-  ADD KEY `idproprietario` (`idproprietario`);
+  ADD KEY `idproprietario` (`idproprietario`),
+  ADD KEY `idimovel` (`idimovel`);
 
 --
 -- Índices para tabela `fiador`
@@ -377,7 +381,7 @@ ALTER TABLE `corretor`
 -- AUTO_INCREMENT de tabela `endereço`
 --
 ALTER TABLE `endereço`
-  MODIFY `idendereço` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idendereço` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `fiador`
@@ -425,7 +429,8 @@ ALTER TABLE `aluguel`
 -- Limitadores para a tabela `endereço`
 --
 ALTER TABLE `endereço`
-  ADD CONSTRAINT `endereço_ibfk_1` FOREIGN KEY (`idproprietario`) REFERENCES `proprietario` (`idproprietario`);
+  ADD CONSTRAINT `endereço_ibfk_1` FOREIGN KEY (`idproprietario`) REFERENCES `proprietario` (`idproprietario`),
+  ADD CONSTRAINT `idimovel` FOREIGN KEY (`idimovel`) REFERENCES `imovel` (`idimovel`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `fiador`
